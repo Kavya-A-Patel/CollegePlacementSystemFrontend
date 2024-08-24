@@ -6,7 +6,7 @@ function GenerateOfferLetters() {
       <h2 className="text-3xl font-bold text-gray-900 mb-6">
         Generate Offer Letters
       </h2>
-      <form>{/* Form fields for generating offer letters */}</form>
+      <form></form>
     </div>
   );
 }

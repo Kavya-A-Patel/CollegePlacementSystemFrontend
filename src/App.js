@@ -4,18 +4,20 @@ import LoginPage from "./Pages/LoginPage";
 import StudentDashboard from "./Pages/StudentDashboard";
 import AdminDashboard from "./Pages/AdminDashboard";
 import ProtectedRoute from "./Components/ProtectedRoute";
-import ApplyCompany from "./Components/Student Components/ApplyCompany";
+import ApplyToCompany from "./Components/Student Components/ApplyToCompany";
 import GenerateOfferLetters from "./Components/Admin Components/GenerateOfferLetters";
 import ManageCompany from "./Components/Admin Components/ManageCompany";
 import ChangePasswordStudent from "./Components/Student Components/ChangePasswordStudent";
 import ChangePasswordAdmin from "./Components/Admin Components/ChangePasswordAdmin";
 import LogoutPage from "./Pages/LogoutPage";
+import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
 
 function App() {
   return (
     <Router>
       <Routes>
         <Route path="/" element={<LoginPage />} />
+        <Route path="/forgot-password-page" element={<ForgotPasswordPage />} />
         <Route
           path="/student-dashboard"
           element={
@@ -36,7 +38,7 @@ function App() {
           path="/apply-company"
           element={
             <ProtectedRoute role="student">
-              <ApplyCompany />
+              <ApplyToCompany />
             </ProtectedRoute>
           }
         />

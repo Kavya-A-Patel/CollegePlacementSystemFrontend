@@ -1,28 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function LoginPage() {
   const navigate = useNavigate();
 
-  // const handleLogin = (e) => {
-  //   e.preventDefault();
-  //   // Dummy logic for demo purposes
-  //   const username = document.getElementById("username").value.toLowerCase();
-  //   const password = document.getElementById("password").value;
+  // useEffect(() => {
+  //   const checkAuth = async () => {
+  //     try {
+  //       const { data } = await axios.get(
+  //         "http://localhost:5001/api/auth/checkAuth",
+  //         {
+  //           withCredentials: true,
+  //         }
+  //       );
 
-  //   // Normally, you'd authenticate against a backend here
-  //   if (username === "admin" && password === "adminpass") {
-  //     Cookies.set("userRole", "admin", { expires: 1 / 48 }); // Set session cookie for 1 day
-  //     navigate("/admin-dashboard");
-  //   } else if (username === "student" && password === "studentpass") {
-  //     Cookies.set("userRole", "student", { expires: 1 / 48 }); // Set session cookie for 1 day
-  //     navigate("/student-dashboard");
-  //   } else {
-  //     alert("Invalid credentials");
-  //   }
-  // };
+  //       if (data.role === "admin") navigate("/admin-dashboard");
+  //       else if (data.role === "student") navigate("/student-dashboard");
+  //     } catch (error) {
+  //       // User is not authenticated, stay on the login page
+  //     }
+  //   };
+
+  //   checkAuth();
+  // }, [navigate]);
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -32,10 +35,11 @@ function LoginPage() {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        { username, password }
+        "http://localhost:5001/api/auth/verify",
+        { username, password },
+        { withCredentials: true }
       );
-      Cookies.set("userRole", data.role, { expires: 1 / 48 }); // Set session cookie for 1 day
+      Cookies.set("userRole", data.role, { expires: 1 });
       if (data.role === "admin") navigate("/admin-dashboard");
       else if (data.role === "student") navigate("/student-dashboard");
     } catch (error) {
@@ -88,12 +92,12 @@ function LoginPage() {
           </div>
           <div className="flex items-center justify-end">
             <div className="text-sm">
-              <a
-                href="#"
+              <Link
+                to="/forgot-password-page"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
               >
                 Forgot your password?
-              </a>
+              </Link>
             </div>
           </div>
           <div>
