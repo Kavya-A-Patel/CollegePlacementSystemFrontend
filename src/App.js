@@ -11,6 +11,11 @@ import ChangePasswordStudent from "./Components/Student Components/ChangePasswor
 import ChangePasswordAdmin from "./Components/Admin Components/ChangePasswordAdmin";
 import LogoutPage from "./Pages/LogoutPage";
 import ForgotPasswordPage from "./Pages/ForgotPasswordPage";
+import ManageApplicationsStudent from "./Components/Student Components/ManageApplicationsStudent";
+import UpdateProfile from "./Components/Student Components/UpdateProfile";
+import PostManageJobs from "./Components/Admin Components/PostManageJobs";
+import ManageApplicationsAdmin from "./Components/Admin Components/ManageApplicationsAdmin";
+import ManageStudents from "./Components/Admin Components/ManageStudents";
 
 function App() {
   return (
@@ -51,7 +56,7 @@ function App() {
           }
         />
         <Route
-          path="/change-password"
+          path="/change-password-admin"
           element={
             <ProtectedRoute role="admin">
               <ChangePasswordAdmin />
@@ -74,13 +79,47 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route
+          path="/manage-applications-student"
+          element={
+            <ProtectedRoute role="student">
+              <ManageApplicationsStudent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/update-profile"
+          element={
+            <ProtectedRoute role={"student"}>
+              <UpdateProfile />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/post-manage-jobs"
+          element={
+            <ProtectedRoute role={"admin"}>
+              <PostManageJobs />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/manage-applications-admin"
+          element={
+            <ProtectedRoute role={"admin"}>
+              <ManageApplicationsAdmin />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/manage-students"
+          element={
+            <ProtectedRoute role={"admin"}>
+              <ManageStudents />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/logout" element={<LogoutPage />} />
-        {/* <Route path="/update-profile" element={<UpdateProfile />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/select-candidates" element={<SelectCandidates />} />
-        <Route path="/manage-applications" element={<ManageApplications />} />
-        <Route path="/post-manage-jobs" element={<PostManageJobs />} /> */}
       </Routes>
     </Router>
   );

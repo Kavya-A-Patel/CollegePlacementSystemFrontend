@@ -7,26 +7,6 @@ import { Link } from "react-router-dom";
 function LoginPage() {
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const checkAuth = async () => {
-  //     try {
-  //       const { data } = await axios.get(
-  //         "http://localhost:5001/api/auth/checkAuth",
-  //         {
-  //           withCredentials: true,
-  //         }
-  //       );
-
-  //       if (data.role === "admin") navigate("/admin-dashboard");
-  //       else if (data.role === "student") navigate("/student-dashboard");
-  //     } catch (error) {
-  //       // User is not authenticated, stay on the login page
-  //     }
-  //   };
-
-  //   checkAuth();
-  // }, [navigate]);
-
   const handleLogin = async (e) => {
     e.preventDefault();
 
